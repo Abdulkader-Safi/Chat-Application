@@ -33,7 +33,7 @@ class AuthController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 "status" => 400,
-                'massage' => $validator->messages()
+                'message' => $validator->messages() // TODO: frontend can not read this message using sweetalert need to fix
             ]);
         }
 
@@ -46,7 +46,7 @@ class AuthController extends Controller
         } else {
             return response()->json([
                 "status" => 400,
-                "massage" => "Password and Password Confirmation does not match"
+                "message" => "Password and Password Confirmation does not match"
             ]);
         }
 
@@ -54,9 +54,9 @@ class AuthController extends Controller
 
         return response()->json([
             "status" => 200,
-            "massage" => "User Created Successfully",
+            "message" => "User Created Successfully",
             "token" => $token,
-            "data" => $user
+            'username' => $user->name,
         ]);
     }
 
@@ -78,7 +78,7 @@ class AuthController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 "status" => 400,
-                'massage' => $validator->messages()
+                'message' => $validator->messages()
             ]);
         }
 
